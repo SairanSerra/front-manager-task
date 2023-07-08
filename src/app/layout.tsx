@@ -2,9 +2,9 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { LayoutProvider } from '@/providers'
 
-const inter = Inter({ 
-  subsets: ['latin'], 
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
 export const metadata = {
@@ -20,10 +20,8 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <LayoutProvider>
-         {children} 
-        </LayoutProvider>    
-        </body>
+        <LayoutProvider>{children}</LayoutProvider>
+      </body>
     </html>
   )
 }

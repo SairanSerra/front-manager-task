@@ -1,6 +1,6 @@
-import { IResponseLogin } from "@/services/types";
+import { IResponseLogin } from '@/services/types'
 
 export interface AuthState {
-    user: IResponseLogin
-    setUserState: (data: IResponseLogin) => void
+  user: IResponseLogin
+  setUserState: (data: IResponseLogin) => void
 }

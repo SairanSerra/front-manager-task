@@ -1,1 +1,1 @@
-export {LayoutProvider} from './LayoutProvider'
+export { LayoutProvider } from './LayoutProvider'

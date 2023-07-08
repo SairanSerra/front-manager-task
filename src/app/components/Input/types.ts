@@ -1,5 +1,5 @@
-import { InputProps } from "antd";
+import { InputProps } from 'antd'
 
-export interface PropsInputcustom extends InputProps {
-    label?: string;
+export type PropsInputCustom = InputProps & {
+  label?: string
 }

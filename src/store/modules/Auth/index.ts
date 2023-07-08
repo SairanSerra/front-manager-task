@@ -7,13 +7,14 @@ export const useAuthStore = create(
   persist<AuthState>(
     (set, get) => ({
       user: {
-       email: '',
-       name: '',
-       phone: 0,
-       token: ''
+        email: '',
+        name: '',
+        phone: 0,
+        token: '',
       },
-      setUserState: (data) => set({user: data}),
-      setLoggout: () => set({user:{email: '', name: '',phone: 0, token: ''}})
+      setUserState: (data) => set({ user: data }),
+      setLoggout: () =>
+        set({ user: { email: '', name: '', phone: 0, token: '' } }),
     }),
 
     {
