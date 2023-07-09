@@ -4,6 +4,7 @@ import { PropsFormLogin } from '../types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { formLoginSchema } from '../Schema'
 import { useRouter } from 'next/navigation'
+import { Toast } from '@/app/components'
 
 export function useFormLogin() {
   const [iconEyeOpen, setIcoEyeOpen] = useState(false)
@@ -16,7 +17,7 @@ export function useFormLogin() {
     reValidateMode: 'onSubmit',
     resolver: zodResolver(formLoginSchema),
   })
-  console.log(errors)
+
   const HandleChangeEye = useCallback(() => {
     return setIcoEyeOpen(!iconEyeOpen)
   }, [iconEyeOpen])
@@ -24,7 +25,7 @@ export function useFormLogin() {
   const { push } = useRouter()
 
   const HandleSubmitLogin = (data: PropsFormLogin) => {
-    console.log(data)
+    Toast('error', 'Login')
   }
 
   return {
@@ -34,5 +35,6 @@ export function useFormLogin() {
     handleSubmit,
     HandleSubmitLogin,
     push,
+    errors,
   }
 }

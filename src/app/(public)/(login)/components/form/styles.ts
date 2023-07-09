@@ -14,16 +14,18 @@ export const ContainerButtonAndDescriptions = styled.div`
   margin-bottom: 20px;
 `
 
-export const ContainerEmail = styled.div`
+export const ContainerPassword = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5vw;
+  margin-top: 5%;
 `
 
 export const ContainerRememberMe = styled.div`
   display: flex;
   align-items: center;
   gap: 2%;
+  margin-bottom: 4%;
 `
 
 export const LabelCheckbox = styled.p`

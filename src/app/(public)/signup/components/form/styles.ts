@@ -39,6 +39,7 @@ export const TextSigin = styled.p``
 
 export const LinkSigin = styled.span`
   text-decoration: underline;
+  margin-left: 0.5vw;
   cursor: pointer;
   color: #004aad;
   font-weight: 400;

@@ -13,6 +13,7 @@ export function FormLogin() {
     handleSubmit,
     control,
     push,
+    errors,
   } = useFormLogin()
   return (
     <Styled.ContainerMaster>
@@ -22,6 +23,7 @@ export function FormLogin() {
         render={({ field: { onChange, value } }) => (
           <Input
             label="Email"
+            error={errors.email !== undefined}
             onChange={onChange}
             value={value}
             placeholder="exemplo@exemplo.com"
@@ -29,7 +31,7 @@ export function FormLogin() {
         )}
       />
 
-      <Styled.ContainerEmail>
+      <Styled.ContainerPassword>
         <Controller
           name="password"
           control={control}
@@ -38,6 +40,7 @@ export function FormLogin() {
               label="Senha"
               placeholder="*******"
               onChange={onChange}
+              error={errors.password !== undefined}
               value={value}
               type={iconEyeOpen ? 'password' : 'text'}
               suffix={
@@ -53,7 +56,7 @@ export function FormLogin() {
           <Checkbox />
           <Styled.LabelCheckbox>Lembrar-me</Styled.LabelCheckbox>
         </Styled.ContainerRememberMe>
-      </Styled.ContainerEmail>
+      </Styled.ContainerPassword>
 
       <Styled.ContainerButtonAndDescriptions>
         <Button title="Entrar" onClick={handleSubmit(HandleSubmitLogin)} />

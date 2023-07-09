@@ -7,6 +7,7 @@ export const ContainerMaster = styled.div`
   flex-direction: row;
   width: 100vw;
   height: 100vh;
+  overflow: auto;
 `
 
 export const Card = styled.div`
@@ -19,17 +20,16 @@ export const Card = styled.div`
   justify-content: center;
   @media (max-width: 700px) {
     width: 60%;
-    height: 45%;
   }
   @media (max-width: 445px) {
     width: 80%;
-    height: 57%;
   }
 `
 
 export const ContainerContent = styled.div`
   display: flex;
   align-items: center;
+  height: 100%;
   flex-direction: column;
   gap: 10%;
   @media (max-width: 700px) {
@@ -47,6 +47,7 @@ export const Title = styled.p`
   text-align: center;
   font-weight: 800;
   font-size: xx-large;
+  margin-bottom: 5%;
   @media (max-width: 700px) {
     font-size: large;
   }
@@ -54,6 +55,7 @@ export const Title = styled.p`
 
 export const TextDescription = styled.p`
   color: #727280;
+  margin-bottom: 5%;
   @media (max-width: 700px) {
     font-size: medium;
   }
