@@ -12,12 +12,11 @@ export const ContainerMaster = styled.div`
 export const Card = styled.div`
   background-color: #ffff;
   width: 40%;
-  height: 60%;
+  height: auto;
   border-radius: 20px;
   padding: 20px;
   display: flex;
   justify-content: center;
-  overflow: auto;
   @media (max-width: 700px) {
     width: 60%;
     height: 45%;

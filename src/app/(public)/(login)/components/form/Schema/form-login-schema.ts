@@ -3,7 +3,10 @@ import { z } from 'zod'
 
 export const formLoginSchema = z
   .object({
-    email: z.string().nonempty('Por favor, insira o email'),
+    email: z
+      .string()
+      .email('Insira um email válido')
+      .nonempty('Por favor, insira o email'),
     password: z.string().nonempty('Por favor, insira a senha'),
   })
   .superRefine((values) => {
