@@ -7,7 +7,13 @@ import * as Styled from './styles'
 
 export const Input = forwardRef<InputRef, PropsInputCustom>(
   (
-    { label, error = false, placeholder = 'Digite um valor...', ...props },
+    {
+      label,
+      error = false,
+      errorMessage,
+      placeholder = 'Digite um valor...',
+      ...props
+    },
     ref,
   ) => {
     return (
@@ -19,6 +25,7 @@ export const Input = forwardRef<InputRef, PropsInputCustom>(
           ref={ref}
           {...props}
         />
+        <Styled.LabelError>{errorMessage}</Styled.LabelError>
       </Styled.ContainerMaster>
     )
   },

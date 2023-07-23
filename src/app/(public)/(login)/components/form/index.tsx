@@ -24,6 +24,9 @@ export function FormLogin() {
           <Input
             label="Email"
             error={errors.email !== undefined}
+            errorMessage={
+              errors.email !== undefined ? errors.email.message : ''
+            }
             onChange={onChange}
             value={value}
             placeholder="exemplo@exemplo.com"
@@ -41,6 +44,9 @@ export function FormLogin() {
               placeholder="*******"
               onChange={onChange}
               error={errors.password !== undefined}
+              errorMessage={
+                errors.password !== undefined ? errors.password.message : ''
+              }
               value={value}
               type={iconEyeOpen ? 'password' : 'text'}
               suffix={
@@ -53,7 +59,17 @@ export function FormLogin() {
           )}
         />
         <Styled.ContainerRememberMe>
-          <Checkbox />
+          <Controller
+            name="rememberMe"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Checkbox
+                value={value}
+                checked={value || value === undefined}
+                onChange={(v) => onChange(v.target.checked)}
+              />
+            )}
+          />
           <Styled.LabelCheckbox>Lembrar-me</Styled.LabelCheckbox>
         </Styled.ContainerRememberMe>
       </Styled.ContainerPassword>

@@ -8,3 +8,8 @@ export const CustomInput = styled(Input)`
 export const ContainerMaster = styled.div``
 
 export const Label = styled.p``
+
+export const LabelError = styled.p`
+  color: red;
+  font-size: 12px;
+`

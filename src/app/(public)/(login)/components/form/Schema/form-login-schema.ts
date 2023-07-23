@@ -8,6 +8,7 @@ export const formLoginSchema = z
       .email('Insira um email válido')
       .nonempty('Por favor, insira o email'),
     password: z.string().nonempty('Por favor, insira a senha'),
+    rememberMe: z.boolean(),
   })
   .superRefine((values) => {
     const isInvalidValues = !values.email && !values.password

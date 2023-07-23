@@ -4,6 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { formSignupSchema } from '../schema/form-signup-schema'
 import { useCallback, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useMutation } from '@tanstack/react-query'
+import { authService } from '@/services/http'
+import { IRequestCreateUser } from '@/services/types'
+import type { AxiosError } from 'axios'
+import { Toast } from '@/app/components'
 
 export function useFormSignup() {
   const [openEyePassword, setOpenEyePassword] = useState(false)
@@ -11,15 +16,47 @@ export function useFormSignup() {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<PropsFormSignup>({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
+    criteriaMode: 'all',
+    defaultValues: {
+      confirmPassword: '',
+      email: '',
+      name: '',
+      password: '',
+      phone: '',
+    },
     resolver: zodResolver(formSignupSchema),
   })
   const { push } = useRouter()
+
+  const onError = (err: AxiosError) => {
+    const statusCode = err.response?.status
+    const userHasExist = statusCode === 400
+    const message = userHasExist
+      ? 'Email já cadastrado'
+      : 'Falha ao cadastrar Cliete'
+    Toast('error', message)
+  }
+  const onSuccess = () => {
+    reset()
+    HandleNavigateLogin()
+    Toast('success', 'Usuário cadastrado com sucesso')
+  }
+
+  const { mutate, isLoading } = useMutation(
+    ['create-user'],
+    (data: IRequestCreateUser) => authService.createUser(data),
+    {
+      onError,
+      onSuccess,
+    },
+  )
   const HandleSubmitCreateAccount = (data: PropsFormSignup) => {
-    console.log(data)
+    mutate(data)
   }
 
   const HandleChangeEye = useCallback(
@@ -45,5 +82,6 @@ export function useFormSignup() {
     openEyePassword,
     openEyeConfirmPassword,
     HandleNavigateLogin,
+    isLoading,
   }
 }

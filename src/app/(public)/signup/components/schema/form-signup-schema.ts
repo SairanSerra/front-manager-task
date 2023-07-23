@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 export const formSignupSchema = z
   .object({
-    name: z.string().nonempty('Por Favor isira um nome'),
+    name: z.string().nonempty('Insira um nome'),
     email: z.string().email('Insira um email válido'),
     phone: z
       .string()
@@ -15,7 +15,7 @@ export const formSignupSchema = z
       .transform((phoneNumber) => {
         return sendFormat(phoneNumber)
       }),
-    password: z.string().nonempty('Por favor insira um senha'),
+    password: z.string().nonempty('Insira uma senha'),
     confirmPassword: z.string().nonempty('Por favor confirme a senha'),
   })
   .refine((data) => data.password === data.confirmPassword, {

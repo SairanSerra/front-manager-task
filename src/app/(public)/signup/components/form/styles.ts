@@ -48,3 +48,8 @@ export const LinkSigin = styled.span`
     transform: scale(2);
   }
 `
+
+export const ContainerLoading = styled.div`
+  display: flex;
+  justify-content: center;
+`

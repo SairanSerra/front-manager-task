@@ -1,9 +1,22 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 'use client'
 import type { LayoutProviderProps } from '@/providers/types'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { AxiosError } from 'axios'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: (failureCount, error) => {
+        const errorFormat = error as AxiosError
+        const statusCode = errorFormat.response?.status
+        const retry = statusCode! > 499
+        return retry
+      },
+    },
+  },
+})
 
 export function LayoutProvider({ children }: LayoutProviderProps) {
   const enabledDevTools = process.env.NEXT_PUBLIC_MODE === 'development'

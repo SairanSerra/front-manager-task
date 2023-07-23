@@ -7,6 +7,7 @@ export function InputMask({
   maskChar = null,
   error = false,
   label,
+  errorMessage,
   ...rest
 }: InputMaksProps) {
   const classAntd =
@@ -22,6 +23,7 @@ export function InputMask({
         mask={mask}
         {...rest}
       />
+      <Styled.LabelError>{errorMessage}</Styled.LabelError>
     </Styled.ContainerMaster>
   )
 }

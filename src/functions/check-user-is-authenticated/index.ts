@@ -1,7 +1,3 @@
-import { useAuthStore } from '@/store/index'
-
-export const checkUserIsAuthenticated = () => {
-  const { token } = useAuthStore.getState().user
-
+export const checkUserIsAuthenticated = (token?: string) => {
   return !!token
 }

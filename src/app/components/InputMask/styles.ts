@@ -8,3 +8,8 @@ export const InputMaskCustom = styled(InputMask)`
 export const Label = styled.p``
 
 export const ContainerMaster = styled.div``
+
+export const LabelError = styled.p`
+  color: red;
+  font-size: 12px;
+`

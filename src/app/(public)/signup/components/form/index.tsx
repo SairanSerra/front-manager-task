@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Styled from './styles'
-import { IconEyeOpenOrClose, Input, InputMask } from '@/app/components'
+import { IconEyeOpenOrClose, Input, InputMask, Spinner } from '@/app/components'
 import Button from '@/app/components/Button'
 import { useFormSignup } from '../hooks'
 import { Controller } from 'react-hook-form'
@@ -14,6 +14,7 @@ export function FormSignUP() {
     openEyePassword,
     HandleChangeEye,
     errors,
+    isLoading,
     HandleNavigateLogin,
   } = useFormSignup()
   return (
@@ -34,6 +35,9 @@ export function FormSignUP() {
             <Input
               label="Nome*"
               error={errors.name !== undefined}
+              errorMessage={
+                errors.name !== undefined ? errors.name.message : ''
+              }
               placeholder="Ex: Maria"
               onChange={onChange}
               value={value}
@@ -49,6 +53,9 @@ export function FormSignUP() {
               label="Telefone*"
               error={errors.phone !== undefined}
               placeholder="Ex: (11) 9 9999-9999"
+              errorMessage={
+                errors.phone !== undefined ? errors.phone.message : ''
+              }
               onChange={onChange}
               value={value}
             />
@@ -63,6 +70,9 @@ export function FormSignUP() {
               label="Email*"
               placeholder="exemplo@exemplo.com.br"
               error={errors.email !== undefined}
+              errorMessage={
+                errors.email !== undefined ? errors.email.message : ''
+              }
               onChange={onChange}
               value={value}
             />
@@ -77,6 +87,9 @@ export function FormSignUP() {
               type={openEyePassword ? 'password' : 'text'}
               placeholder="*********"
               error={errors.password !== undefined}
+              errorMessage={
+                errors.password !== undefined ? errors.password.message : ''
+              }
               suffix={
                 <IconEyeOpenOrClose
                   open={openEyePassword}
@@ -97,6 +110,11 @@ export function FormSignUP() {
               type={openEyeConfirmPassword ? 'password' : 'text'}
               placeholder="*********"
               error={errors.confirmPassword !== undefined}
+              errorMessage={
+                errors.confirmPassword !== undefined
+                  ? errors.confirmPassword.message
+                  : ''
+              }
               suffix={
                 <IconEyeOpenOrClose
                   open={openEyeConfirmPassword}
@@ -109,19 +127,27 @@ export function FormSignUP() {
           )}
         />
       </Styled.ContainerFields>
-      <Button
-        title="Cadastrar"
-        onClick={handleSubmit(HandleSubmitCreateAccount)}
-      />
 
-      <Styled.ContainerSigin>
-        <Styled.TextSigin>
-          Já tem uma conta?
-          <Styled.LinkSigin onClick={HandleNavigateLogin}>
-            Entrar
-          </Styled.LinkSigin>
-        </Styled.TextSigin>
-      </Styled.ContainerSigin>
+      {isLoading ? (
+        <Styled.ContainerLoading>
+          <Spinner />
+        </Styled.ContainerLoading>
+      ) : (
+        <>
+          <Button
+            title="Cadastrar"
+            onClick={handleSubmit(HandleSubmitCreateAccount)}
+          />
+          <Styled.ContainerSigin>
+            <Styled.TextSigin>
+              Já tem uma conta?
+              <Styled.LinkSigin onClick={HandleNavigateLogin}>
+                Entrar
+              </Styled.LinkSigin>
+            </Styled.TextSigin>
+          </Styled.ContainerSigin>
+        </>
+      )}
     </Styled.ContainerMaster>
   )
 }

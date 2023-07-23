@@ -1,18 +1,20 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import { IResponseLogin } from '@/services/types'
+import { DataUser } from '@/services/types'
 import { AuthState } from '@/store/types/Auth'
 
 export const useAuthStore = create(
   persist<AuthState>(
     (set, get) => ({
+      rememberEmail: '',
+      setRememberEmail: (rememberEmail: string) => set({ rememberEmail }),
       user: {
         email: '',
         name: '',
         phone: 0,
         token: '',
       },
-      setUserState: (data) => set({ user: data }),
+      setUserState: (data: DataUser) => set({ user: data }),
       setLoggout: () =>
         set({ user: { email: '', name: '', phone: 0, token: '' } }),
     }),

@@ -1,6 +1,9 @@
-import { IResponseLogin } from '@/services/types'
+import { DataUser } from '@/services/types'
 
 export interface AuthState {
-  user: IResponseLogin
-  setUserState: (data: IResponseLogin) => void
+  user: DataUser
+  rememberEmail: string
+  setRememberEmail: (data: string) => void
+  setUserState: (data: DataUser) => void
+  setLoggout: () => void
 }
