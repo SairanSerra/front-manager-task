@@ -6,4 +6,4 @@
 npm run dev
 ```
 
-# Atenção esta aplicação depende do back-end então clone o repositório https://github.com/SairanSerra/manager-task-api e rode o projeto
+- Atenção esta aplicação depende do back-end então clone o repositório https://github.com/SairanSerra/manager-task-api e rode o projeto
