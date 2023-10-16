@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  swcMinify: true,
   output: 'standalone',
   reactStrictMode: false,
   webpack: (config, options) => {
