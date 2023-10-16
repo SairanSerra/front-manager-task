@@ -1,5 +1,14 @@
 FROM node:16.14-alpine3.14 AS base
 
+FROM base AS deps
+
+RUN apk add --no-cache libc6-compat
+WORKDIR /app/manager-task-front
+
+COPY package*.json .
+RUN npm ci 
+
+
 FROM base AS builder
 WORKDIR /app/manager-task-front
 COPY --from=deps /app/manager-task-front/node_modules ./node_modules
@@ -24,12 +33,12 @@ ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
 COPY --from=builder /app/manager-task-front/public ./public
-COPY --from=builder  /app/manager-task-front/.next/standalone ./
 COPY --from=builder /app/manager-task-front/.env.production ./
+COPY --from=builder  /app/manager-task-front/.next/standalone ./
 COPY --from=builder /app/manager-task-front/.next/static ./.next/static
 
 
 
-ENV PORT 4001
+ENV PORT 3708
 
 CMD ["node", "server.js"]
