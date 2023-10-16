@@ -4,6 +4,7 @@ import type { LayoutProviderProps } from '@/providers/types'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { AxiosError } from 'axios'
+import 'antd/dist/reset.css'
 
 const queryClient = new QueryClient({
   defaultOptions: {
