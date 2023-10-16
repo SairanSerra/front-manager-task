@@ -1,4 +1,18 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  swcMinify: true,
+  output: 'standalone',
+  reactStrictMode: false,
+  antd: {
+    import: true,
+  },
+  webpack: (config, options) => {
+    config.watchOptions = {
+      poll: 1000,
+      aggregateTimeout: 300,
+    }
+    return config
+  },
+}
 
 module.exports = nextConfig
