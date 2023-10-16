@@ -1,0 +1,16 @@
+version: "3.5"
+
+services: 
+  rota361:
+   container_name: rota361
+   build: 
+    context: .
+    dockerfile: Dockerfile.dev
+   restart: always
+   ports:
+    - 4000:4000
+   volumes:
+    - .:/app/rota361
+    - /app/rota361/node_modules
+    - /app/rota36/.next
+ 
