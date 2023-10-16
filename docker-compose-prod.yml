@@ -1,0 +1,9 @@
+version: "3.5"
+
+services:
+  manager-task-front:
+   container_name: manager-task-front
+   image: sairan/manager-task-front:latest
+   ports:
+    - "4001:4001"
+   restart: always

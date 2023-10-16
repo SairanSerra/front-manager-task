@@ -1,0 +1,39 @@
+WORKDIR /app/manager-task-front
+
+COPY package*.json .
+RUN npm ci 
+
+
+FROM base AS builder
+WORKDIR /app/manager-task-front
+COPY --from=deps /app/manager-task-front/node_modules ./node_modules
+COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED 1
+
+
+RUN npm run build && \
+    npm prune --production && \
+    npm cache clean --force && \
+    rm -rf .next/cache && \
+    rm -rf node_modules/.cache && \
+    find . -name "*.test.*" -delete
+
+
+FROM base AS runner 
+WORKDIR /app/manager-task-front
+
+ENV NODE_ENV production
+
+ENV NEXT_TELEMETRY_DISABLED 1
+
+COPY --from=builder /app/manager-task-front/public ./public
+COPY --from=builder  /app/manager-task-front/.next/standalone ./
+COPY --from=builder /app/manager-task-front/.env.production ./
+COPY --from=builder /app/manager-task-front/.next/static ./.next/static
+
+
+
+ENV PORT 4001
+
+CMD ["node", "server.js"]

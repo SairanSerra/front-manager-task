@@ -1,0 +1,44 @@
+name: DEPLOY - PROD
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - name: Install dependencies
+        run: npm i
+      - name: Criando env production
+        run: |
+          touch .env.production
+          echo "NEXT_PUBLIC_MODE=${{secrets.NEXT_PUBLIC_MODE_ENV}}" >> .env.production
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{secrets.DOCKER_HUB_USERNAME}}
+          password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2.3.0
+        with:
+          # Contexto onde está o arquivo Dockerfile, normalmente é .
+          context: .
+          file: Dockerfile.production
+          # Qual a tag
+          # tags: colocar tag
+          no-cache: true
+          push: true
+          github-token: ${{ secrets.GIT_ACCESS_TOKEN }}
+      - name: Update image in stack
+        uses: distributhor/workflow-webhook@v2
+        env:
+         webhook_url: ${{secrets.WEB_HOOK_DOCKER_URL}}
+         webhook_secret: "Y0uR5ecr3t"
+         verify_ssl: false
