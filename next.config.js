@@ -3,9 +3,6 @@ const nextConfig = {
   swcMinify: true,
   output: 'standalone',
   reactStrictMode: false,
-  antd: {
-    import: true,
-  },
   webpack: (config, options) => {
     config.watchOptions = {
       poll: 1000,
