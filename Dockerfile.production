@@ -17,11 +17,7 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 
 
-RUN npm run build && \
-    npm prune --production && \
-    npm cache clean --force && \
-    rm -rf .next/cache && \
-    rm -rf node_modules/.cache
+RUN npm run build
 
 
 FROM base AS runner 
