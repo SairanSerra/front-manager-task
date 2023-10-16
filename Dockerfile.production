@@ -1,8 +1,4 @@
-WORKDIR /app/manager-task-front
-
-COPY package*.json .
-RUN npm ci 
-
+FROM node:16.14-alpine3.14 AS base
 
 FROM base AS builder
 WORKDIR /app/manager-task-front
