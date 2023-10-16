@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  reactStrictMode: false,
   webpack: (config, options) => {
     config.watchOptions = {
       poll: 1000,
