@@ -1,5 +1,4 @@
 import React from 'react'
-import { Modal } from 'antd'
 import type { PropsModalCreateTask } from './types/modal-task'
 import { Input, Spinner } from '@/app/components'
 import { useModalCreateTask } from './hooks'
@@ -9,6 +8,7 @@ import { itemDropdownStatusCreateTask } from './objects'
 import Button from '@/app/components/Button'
 import * as Styled from './styles'
 import type { TypeStatusTask } from '@/@types/base-types'
+import { Modal } from 'antd'
 
 export function ModalCreateTask({
   onClose,
