@@ -10,10 +10,9 @@ export function InputMask({
   errorMessage,
   ...rest
 }: InputMaksProps) {
-  const classAntd =
-    'ant-input css-dev-only-do-not-override-14wwjjs sc-bqqOtQ gEcHMp'
+  const classAntd = 'ant-input css-3mqfnx sc-jrsKJM iWNsJF'
   const classAntdWithError =
-    'ant-input ant-input-status-error css-dev-only-do-not-override-14wwjjs sc-bqqOtQ gEcHMp'
+    'ant-input ant-input-status-error css-3mqfnx sc-jrsKJM iWNsJF'
   return (
     <Styled.ContainerMaster>
       {label && <Styled.Label>{label}</Styled.Label>}
