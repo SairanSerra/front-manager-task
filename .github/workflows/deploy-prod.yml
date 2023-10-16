@@ -32,7 +32,7 @@ jobs:
           context: .
           file: Dockerfile.production
           # Qual a tag
-          # tags: colocar tag
+          tags: sairan/manager-task-front:latest
           no-cache: true
           push: true
           github-token: ${{ secrets.GIT_ACCESS_TOKEN }}
