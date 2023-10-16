@@ -1,6 +1,6 @@
 FROM node:16.14-alpine3.14 AS base
 
-WORKDIR /app/rota361
+WORKDIR /app/manager-task
 COPY package*.json .
 
 RUN npm install

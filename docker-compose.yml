@@ -1,8 +1,8 @@
 version: "3.5"
 
 services: 
-  rota361:
-   container_name: rota361
+  manager-task:
+   container_name: manager-task
    build: 
     context: .
     dockerfile: Dockerfile.dev
@@ -10,7 +10,7 @@ services:
    ports:
     - 4001:4001
    volumes:
-    - .:/app/rota361
-    - /app/rota361/node_modules
+    - .:/app/manager-task
+    - /app/manager-task/node_modules
     - /app/rota36/.next
  
